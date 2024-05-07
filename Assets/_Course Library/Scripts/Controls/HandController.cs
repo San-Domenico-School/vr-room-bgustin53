@@ -34,12 +34,21 @@ public class HandController : MonoBehaviour
         // Set up actions in Input System
         float grip = gripInput.action.ReadValue<float>();
         float trigger = triggerInput.action.ReadValue<float>();
-        float indexTouch = indexInput.action.ReadValue<float>();
-        float thumbTouch = thumbInput.action.ReadValue<float>();
 
         animator.SetFloat("Grip", grip);
         animator.SetFloat("Trigger", trigger);
-        animator.SetFloat("Index", indexTouch);
-        animator.SetFloat("Thumb", thumbTouch);
+
+        // Set up actions in Input System if they exist
+        if (indexInput != null)
+        {
+            float indexTouch = indexInput.action.ReadValue<float>();
+            animator.SetFloat("Index", indexTouch);
+        }
+
+        if (thumbInput != null)
+        {
+            float thumbTouch = thumbInput.action.ReadValue<float>();
+            animator.SetFloat("Thumb", thumbTouch);
+        }
     }
 }
